@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+=======
+
+
+
+// export default function App() {
+//   return (
+//       <h1>App</h1>
+//   );
+// }
+
+>>>>>>> e73e63b39c5cd168db3488d565415552d66ecdb9
 import React from 'react';
 
 const ExerciseList = ({ exercises = [] }) => {

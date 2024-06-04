@@ -1,3 +1,12 @@
+
+
+
+// export default function App() {
+//   return (
+//       <h1>App</h1>
+//   );
+// }
+
 import React from 'react';
 
 const ExerciseList = ({ exercises = [] }) => {

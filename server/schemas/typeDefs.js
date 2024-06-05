@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Workout {
-    id: ID
+    _id: ID
     name: String
     exercises: [Exercise]
     duration: Int
@@ -10,7 +10,7 @@ const typeDefs = gql`
   }
 
   type Exercise {
-    id: ID
+    _id: ID
     name: String
     sets: Int
     reps: Int
@@ -18,24 +18,24 @@ const typeDefs = gql`
   }
 
   type User {
-    id: ID
+    _id: ID
     username: String
     email: String
-    workoutplans: [Workout]
+    workoutPlans: [Workout]
   }
 
   type Query {
-    currentusers: User
-    allworkouts: [Workout]
+    currentUser: User
+    allWorkouts: [Workout]
     workout(id: ID!): Workout
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): AuthPayload
     login(email: String!, password: String!): AuthPayload
-    addworkout(name: String!, exercises: [ExerciseInput]!, duration: Int!, date: String!): Workout
-    updateworkout(id: ID!, name: String, exercises: [ExerciseInput], duration: Int, date: String): Workout
-    deleteworkout(id: ID!): Workout
+    addWorkout(name: String!, exercises: [ExerciseInput]!, duration: Int!, date: String!): Workout
+    updateWorkout(id: ID!, name: String, exercises: [ExerciseInput], duration: Int, date: String): Workout
+    deleteWorkout(id: ID!): Workout
   }
 
   input ExerciseInput {

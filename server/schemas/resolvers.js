@@ -1,20 +1,20 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Workout } = require('../models');
-const { generatetoken } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
 
-const authenticateuser = (context) => {
-  if (!context.currentusers) {
+const authenticateUser = (context) => {
+  if (!context.user) {
     throw new AuthenticationError('Please log in first');
   }
 };
 
 const resolvers = {
   Query: {
-    currentusers: async (parent, args, context) => {
-      authenticateuser(context);
-      return User.findOne({ _id: context.currentusers._id }).populate('workoutplan');
+    currentUser: async (parent, args, context) => {
+      authenticateUser(context);
+      return User.findOne({ _id: context.user._id }).populate('workoutPlans');
     },
-    allworkouts: async () => {
+    allWorkouts: async () => {
       return Workout.find();
     },
     workout: async (parent, { id }) => {
@@ -23,42 +23,42 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, args) => {
-      const newuser = await User.create(args);
-      const token = generatetoken(newuser);
-      return { token, newuser };
+      const newUser = await User.create(args);
+      const token = signToken(newUser);
+      return { token, user: newUser };
     },
     login: async (parent, { email, password }) => {
-      const existinguser = await User.findOne({ email });
+      const user = await User.findOne({ email });
 
-      if (!existinguser) {
+      if (!user) {
         throw new AuthenticationError('Invalid credentials');
       }
 
-      const isPasswordValid = await existinguser.isCorrectPassword(password);
+      const isPasswordValid = await user.isCorrectPassword(password);
 
       if (!isPasswordValid) {
         throw new AuthenticationError('Invalid credentials');
       }
 
-      const token = generatetoken(existinguser);
-      return { token, existinguser };
+      const token = signToken(user);
+      return { token, user };
     },
-    addworkout: async (parent, args, context) => {
-      authenticateuser(context);
-      const newexercise = await Workout.create(args);
+    addWorkout: async (parent, args, context) => {
+      authenticateUser(context);
+      const newWorkout = await Workout.create(args);
       await User.findByIdAndUpdate(
-        context.currentusers._id,
-        { $push: { workoutplan: newexercise._id } },
+        context.user._id,
+        { $push: { workoutPlans: newWorkout._id } },
         { new: true }
       );
-      return newexercise;
+      return newWorkout;
     },
-    updateworkout: async (parent, { id, ...args }, context) => {
-      authenticateuser(context);
+    updateWorkout: async (parent, { id, ...args }, context) => {
+      authenticateUser(context);
       return Workout.findByIdAndUpdate(id, args, { new: true });
     },
-    deleteworkout: async (parent, { id }, context) => {
-      authenticateuser(context);
+    deleteWorkout: async (parent, { id }, context) => {
+      authenticateUser(context);
       return Workout.findByIdAndDelete(id);
     },
   },

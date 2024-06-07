@@ -1,44 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const GET_ALL_WORKOUTS = gql`
-  query getAllWorkouts {
-    allWorkouts {
-      _id
-      name
-      exercises {
-        _id
-        name
-        sets
-        reps
-        weight
-      }
-      duration
-      date
-    }
-  }
-`;
-
-export const GET_WORKOUT = gql`
-  query getWorkout($id: ID!) {
-    workout(id: $id) {
-      _id
-      name
-      exercises {
-        _id
-        name
-        sets
-        reps
-        weight
-      }
-      duration
-      date
-    }
-  }
-`;
-
-export const GET_EXERCISE = gql`
-  query getExercise($id: ID!) {
-    exercise(id: $id) {
+export const QUERY_EXERCISE = gql`
+  query getExercise {
+    exercises {
       _id
       name
       sets
@@ -48,9 +12,9 @@ export const GET_EXERCISE = gql`
   }
 `;
 
-export const GET_CURRENT_USER = gql`
-  query getCurrentUser {
-    currentUser {
+export const QUERY_ME = gql`
+  query me {
+    me {
       _id
       username
       email
@@ -67,6 +31,18 @@ export const GET_CURRENT_USER = gql`
         duration
         date
       }
+    }
+  }
+`;
+
+export const ADD_EXERCISE = gql`
+  mutation addExercise($name: String!, $sets: Int!, $reps: Int!, $weight: Float) {
+    addExercise(name: $name, sets: $sets, reps: $reps, weight: $weight) {
+      _id
+      name
+      sets
+      reps
+      weight
     }
   }
 `;

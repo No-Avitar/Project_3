@@ -1,22 +1,72 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_TECH = gql`
-  query tech {
-    tech {
+export const GET_ALL_WORKOUTS = gql`
+  query getAllWorkouts {
+    allWorkouts {
       _id
       name
+      exercises {
+        _id
+        name
+        sets
+        reps
+        weight
+      }
+      duration
+      date
     }
   }
 `;
 
-export const QUERY_MATCHUPS = gql`
-  query matchups($_id: String) {
-    matchups(_id: $_id) {
+export const GET_WORKOUT = gql`
+  query getWorkout($id: ID!) {
+    workout(id: $id) {
       _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
+      name
+      exercises {
+        _id
+        name
+        sets
+        reps
+        weight
+      }
+      duration
+      date
+    }
+  }
+`;
+
+export const GET_EXERCISE = gql`
+  query getExercise($id: ID!) {
+    exercise(id: $id) {
+      _id
+      name
+      sets
+      reps
+      weight
+    }
+  }
+`;
+
+export const GET_CURRENT_USER = gql`
+  query getCurrentUser {
+    currentUser {
+      _id
+      username
+      email
+      workoutPlans {
+        _id
+        name
+        exercises {
+          _id
+          name
+          sets
+          reps
+          weight
+        }
+        duration
+        date
+      }
     }
   }
 `;

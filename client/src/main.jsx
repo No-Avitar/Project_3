@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SingleExercise from './pages/SingleExercise';
-import Profile from './pages/Profile';
+// import Profile from './pages/Profile';
 import ErrorPage from './pages/ErrorPage';
 
 const router = createBrowserRouter([

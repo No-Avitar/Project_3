@@ -1,22 +1,48 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_TECH = gql`
-  query tech {
-    tech {
+export const QUERY_EXERCISE = gql`
+  query getExercise {
+    exercises {
       _id
       name
+      sets
+      reps
+      weight
     }
   }
 `;
 
-export const QUERY_MATCHUPS = gql`
-  query matchups($_id: String) {
-    matchups(_id: $_id) {
+export const QUERY_ME = gql`
+  query me {
+    me {
       _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
+      username
+      email
+      workoutPlans {
+        _id
+        name
+        exercises {
+          _id
+          name
+          sets
+          reps
+          weight
+        }
+        duration
+        date
+      }
+    }
+  }
+`;
+
+export const ADD_EXERCISE = gql`
+  mutation addExercise($name: String!, $sets: Int!, $reps: Int!, $weight: Float) {
+    addExercise(name: $name, sets: $sets, reps: $reps, weight: $weight) {
+      _id
+      name
+      sets
+      reps
+      weight
     }
   }
 `;

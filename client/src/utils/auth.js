@@ -3,9 +3,10 @@ const { AuthenticationError } = require('apollo-server-express');
 
 // Secret key for JWT
 const secret = 'c5d23e2c7c77db4dccb765a3167bac1db2140c138d81bbc6984fb1fb58d1b076'; // Make sure to replace this with a secure secret key
-
+class AuthService {
 // Function to generate a JWT token
-const signToken = (user) => {
+
+ signToken = (user) => {
   const payload = {
     id: user.id,
     email: user.email,
@@ -16,7 +17,7 @@ const signToken = (user) => {
 };
 
 // Middleware function to verify JWT token
-const authMiddleware = ({ req }) => {
+ authMiddleware = ({ req }) => {
   // Get the token from the request headers
   const token = req.headers.authorization;
 
@@ -37,5 +38,7 @@ const authMiddleware = ({ req }) => {
     throw new AuthenticationError('Invalid or expired token');
   }
 };
+}
 
-module.exports = { signToken, authMiddleware };
+// module.exports = { signToken, authMiddleware };
+export default new AuthService();

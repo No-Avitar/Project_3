@@ -45,3 +45,5 @@ ReactDOM.render(
   </React.StrictMode>,
   root
 );
+
+export default WorkoutForm;

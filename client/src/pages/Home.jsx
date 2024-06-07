@@ -5,10 +5,10 @@ import WORKOUTFORM from '../components/WORKOUTFORM';
 import EXERCISELIST from '../components/EXERCISELIST';
 import EXERCISEFORM from '../components/EXERCISEFORM';
 
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, data } = useQuery(QUERY_ME);
   const thoughts = data?.thoughts || [];
 
   return (

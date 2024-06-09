@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client';
 
-import WORKOUTLIST from '../components/WORKOUTLIST';
-import WORKOUTFORM from '../components/WORKOUTFORM';
-import EXERCISELIST from '../components/EXERCISELIST';
-import EXERCISEFORM from '../components/EXERCISEFORM';
+import WorkoutList from '../components/WorkoutList';
+import WorkoutForm from '../components/WorkoutForm';
+// import ExerciseList from '../components/ExerciseList';
+// import ExerciseForm from '../components/ExerciseForm';
 
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, data } = useQuery(QUERY_ME);
   const thoughts = data?.thoughts || [];
 
   return (
@@ -18,13 +18,13 @@ const Home = () => {
           className="col-12 col-md-10 mb-3 p-3"
           style={{ border: '1px dotted #1a1a1a' }}
         >
-          <WORKOUTFORM />
+          <WorkoutForm />
         </div>
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <WORKOUTLIST
+            <WorkoutList
               thoughts={thoughts}
               title="Some Feed for Thought(s)..."
             />

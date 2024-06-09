@@ -8,7 +8,7 @@ import { QUERY_EXERCISE, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const ExerciseForm = () => {
-    const [exerciseText, setExcerciseText] = useState('');
+    const [exerciseText, setExerciseText] = useState('');
   
     const [characterCount, setCharacterCount] = useState(0);
   
@@ -33,7 +33,7 @@ const ExerciseForm = () => {
           },
         });
   
-        setExcerciseText('');
+        setExerciseText('');
       } catch (err) {
         console.error(err);
       }
@@ -43,7 +43,7 @@ const ExerciseForm = () => {
       const { name, value } = event.target;
   
       if (name === 'exerciseText' && value.length <= 280) {
-        setExcerciseText(value);
+        setExerciseText(value);
         setCharacterCount(value.length);
       }
     };

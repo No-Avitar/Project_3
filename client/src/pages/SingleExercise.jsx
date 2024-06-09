@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { GET_EXERCISE } from '../utils/queries';
+import { QUERY_EXERCISE } from '../utils/queries';
 
 const SingleExercise = () => {
   const { id } = useParams();
-  const { loading, data } = useQuery(GET_EXERCISE, {
+  const { loading, data } = useQuery(QUERY_EXERCISE, {
     variables: { id: id },
   });
   const exercise = data?.exercise || {};

@@ -13,12 +13,12 @@ db.once('open', async () => {
     await User.create(userSeeds);
 
     for (let i = 0; i < exerciseSeeds.length; i++) {
-      const { _id, exerciseAuthor } = await Thought.create(exerciseSeeds[i]);
+      const { _id, exerciseAuthor } = await Exercise.create(exerciseSeeds[i]);
       const user = await User.findOneAndUpdate(
         { username: exerciseAuthor },
         {
           $addToSet: {
-            thoughts: _id,
+            workoutPlans: _id,
           },
         }
       );

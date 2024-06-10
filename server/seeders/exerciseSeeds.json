@@ -1,20 +1,15 @@
-[
-    {
-      "name": "Bench Press",
-      "sets": "5",
-      "reps": "10",
-      "weight": "405"
-    },
-    {
-        "name": "Bulgarian Split Squats",
-        "sets": "5",
-        "reps": "8",
-        "weight": "540"
-    },
-    {
-        "name": "Dumbell Curls",
-        "sets": "10",
-        "reps": "8",
-        "weight": "20"
-    }
-]
+{"workout": {
+    "_id": "666258b959e715dc38f4e0fd",
+    "date": "Jun 6th, 2024 at 12:00 am",
+    "duration": 3,
+    "name": "workout 3",
+    "exercises": [
+      {
+        "_id": "666258b959e715dc38f4e0fe",
+        "name": "Bench Press",
+        "reps": 1,
+        "sets": 1,
+        "weight": 1
+      }
+    ]
+  }}

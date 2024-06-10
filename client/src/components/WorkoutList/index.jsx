@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const WorkoutList = ({ workouts, title, showTitle = true }) => {
-  if (!workouts.length) {
+  if (!workouts?.length) {
     return <h3>No Workouts Yet</h3>;
   }
 

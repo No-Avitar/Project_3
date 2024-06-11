@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const App = () => {
+const WorkoutForm = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div style={{ marginTop: '60px' }}>
         {/* Other components or content can be placed here */}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
@@ -41,7 +41,9 @@ const footerStyle = {
 const root = document.getElementById('root');
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <WorkoutForm />
   </React.StrictMode>,
   root
 );
+
+export default WorkoutForm;
